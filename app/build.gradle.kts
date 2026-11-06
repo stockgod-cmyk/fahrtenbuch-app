@@ -1,4 +1,3 @@
-Kotlin
 
 plugins {
     id("com.android.application")
