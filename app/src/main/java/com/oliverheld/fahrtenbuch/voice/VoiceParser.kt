@@ -16,3 +16,4 @@ object VoiceParser {
         }
         return Parsed(start, ziel, km, text)
     }
+}
