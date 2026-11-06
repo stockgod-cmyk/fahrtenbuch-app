@@ -108,7 +108,11 @@ class MainActivity: ComponentActivity() {
                         Spacer(Modifier.height(12.dp))
                         Button(onClick = {
                             scope.launch {
-                                val f = Fahrt(datum = datum, start = start, ziel = ziel, km = km.replace(",",".").toDoubleOrNull()?:0.0, anlass = anlass)
+                                val d = java.time.LocalDate.parse(datum)
+val jahr = d.year
+val quartal = (d.monthValue - 1) / 3 + 1
+val maxNr = db.dao().maxLfdNrFuerJahr(jahr)
+val f = Fahrt(lfdNr = maxNr + 1, datum = datum, quartal = quartal, jahr = jahr, start = start, ziel = ziel, km = km.replace(",", ".").toDoubleOrNull() ?: 0.0, anlass = anlass)
                                 db.dao().insert(f)
                                 vm.start.value = ""; vm.ziel.value = ""; vm.km.value = ""; vm.anlass.value = ""
                                 Toast.makeText(context, "Fahrt gespeichert", Toast.LENGTH_SHORT).show()
