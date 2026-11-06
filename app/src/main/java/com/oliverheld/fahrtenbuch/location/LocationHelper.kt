@@ -1,4 +1,3 @@
-
 package com.oliverheld.fahrtenbuch.location
 import android.annotation.SuppressLint
 import android.content.Context
@@ -18,6 +17,8 @@ class LocationHelper(private val context: Context) {
             val json = org.json.JSONObject(text)
             val display = json.optString("display_name", "Aktueller Standort").split(",").take(3).joinToString(",")
             return Ort(display.ifBlank { "Aktueller Standort" }, loc.latitude, loc.longitude)
-        } catch (e: Exception) { return null }
+        } catch (e: Exception) {
+            return null
+        }
     }
 }
