@@ -28,8 +28,10 @@ jobs:
           echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
           yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
           $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
-      - name: Setup Gradle
+      - name: Setup Gradle 8.2
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.2
       - name: Build Debug APK
         env:
           ANDROID_HOME: ${{ env.ANDROID_HOME }}
